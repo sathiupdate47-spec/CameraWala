@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CameraWala | Photographer Booking</title>
+<title>CameraWala - Photographer Booking</title>
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background: #f8f9fc;
+  background: #f5f6fa;
   color: #222;
 }
 
@@ -22,103 +21,87 @@ header {
   background: #111827;
   color: white;
   padding: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
+  text-align: center;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: bold;
   color: #ffb703;
-}
-
-header a {
-  color: white;
-  text-decoration: none;
-  margin-left: 12px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .hero {
-  padding: 75px 20px;
-  text-align: center;
+  padding: 55px 18px;
+  background: #263247;
   color: white;
-  background: linear-gradient(135deg, #111827, #374151);
+  text-align: center;
 }
 
 .hero h1 {
-  font-size: 38px;
-  margin-bottom: 18px;
-}
-
-.hero p {
-  font-size: 17px;
-  margin-bottom: 25px;
+  font-size: 32px;
 }
 
 button {
-  background: #ffb703;
-  border: none;
-  padding: 13px 20px;
+  padding: 13px 18px;
+  border: 0;
   border-radius: 7px;
-  font-size: 16px;
+  background: #ffb703;
   font-weight: bold;
   cursor: pointer;
+  margin: 5px;
 }
 
-section {
-  padding: 45px 20px;
+.section {
+  padding: 30px 15px;
   text-align: center;
 }
 
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-  gap: 15px;
-  max-width: 900px;
-  margin: 25px auto 0;
-}
-
 .card {
-  padding: 25px 12px;
   background: white;
+  padding: 20px;
+  margin: 15px auto;
+  max-width: 400px;
   border-radius: 12px;
-  box-shadow: 0 3px 12px #00000012;
+  box-shadow: 0 3px 12px #0001;
 }
 
-.card h3 {
-  margin: 12px 0;
+input, select {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 16px;
 }
 
-.icon {
-  font-size: 38px;
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000b;
+  padding: 15px;
+  overflow-y: auto;
+  z-index: 10;
 }
 
-.join {
-  background: #fff;
+.modal-box {
+  background: white;
+  max-width: 420px;
+  margin: 25px auto;
+  padding: 22px;
+  border-radius: 12px;
 }
 
-.join p {
-  margin: 15px 0 22px;
+.close {
+  float: right;
+  background: #ddd;
 }
 
 footer {
   background: #111827;
   color: white;
+  padding: 20px;
   text-align: center;
-  padding: 25px 10px;
-}
-
-@media (max-width: 500px) {
-  .hero h1 {
-    font-size: 29px;
-  }
-
-  header {
-    justify-content: center;
-  }
 }
 </style>
 </head>
@@ -127,65 +110,152 @@ footer {
 
 <header>
   <div class="logo">📸 CameraWala</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#join">Join Us</a>
-  </nav>
+  <p>Find Your Perfect Photographer</p>
+  <button onclick="openForm('login')">Login</button>
+  <button onclick="openForm('customer')">Customer Signup</button>
+  <button onclick="openForm('photographer')">
+    Photographer Signup
+  </button>
 </header>
 
-<main>
-  <div class="hero" id="home">
-    <h1>Find Your Perfect Photographer</h1>
-    <p>Book professional photographers for weddings, birthdays and events.</p>
-    <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
-      Explore Services
-    </button>
+<section class="hero">
+  <h1>Capture Your Best Moments</h1>
+  <p>Book photographers for weddings, birthdays and events.</p>
+  <button onclick="document.getElementById('services').scrollIntoView()">
+    Explore Services
+  </button>
+</section>
+
+<section class="section" id="services">
+  <h2>Our Services</h2>
+
+  <div class="card">
+    <h3>💍 Wedding Photography</h3>
+    <p>Capture your special day.</p>
   </div>
 
-  <section id="services">
-    <h2>Our Services</h2>
-    <p>Make every special moment memorable.</p>
+  <div class="card">
+    <h3>🎂 Birthday Photography</h3>
+    <p>Keep your beautiful memories.</p>
+  </div>
 
-    <div class="services">
-      <div class="card">
-        <div class="icon">💍</div>
-        <h3>Wedding</h3>
-        <p>Capture your special day.</p>
+  <div class="card">
+    <h3>📷 Event Photography</h3>
+    <p>Professional photography for every event.</p>
+  </div>
+</section>
+
+<div class="modal" id="accountModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeForm()">Close ✖</button>
+
+    <h2 id="formTitle">Create Account</h2>
+    <p id="formDescription"></p>
+
+    <form id="accountForm" onsubmit="demoSubmit(event)">
+      <div id="nameField">
+        <input id="fullName" type="text"
+          placeholder="Full Name" autocomplete="name" required>
       </div>
 
-      <div class="card">
-        <div class="icon">🎂</div>
-        <h3>Birthday</h3>
-        <p>Preserve birthday memories.</p>
+      <input id="mobile" type="tel"
+        placeholder="Mobile Number" autocomplete="tel"
+        pattern="[0-9]{10}" maxlength="10" required>
+
+      <div id="cityField">
+        <input id="city" type="text" placeholder="Your City">
       </div>
 
-      <div class="card">
-        <div class="icon">📷</div>
-        <h3>Photography</h3>
-        <p>Professional photo shoots.</p>
+      <div id="serviceField">
+        <select id="photographyService">
+          <option value="">Select Photography Service</option>
+          <option>Wedding Photography</option>
+          <option>Birthday Photography</option>
+          <option>Event Photography</option>
+          <option>Videography</option>
+        </select>
       </div>
 
-      <div class="card">
-        <div class="icon">🎬</div>
-        <h3>Videography</h3>
-        <p>Videos for every occasion.</p>
-      </div>
-    </div>
-  </section>
+      <input id="password" type="password"
+        placeholder="Password (minimum 8 characters)"
+        minlength="8" autocomplete="new-password" required>
 
-  <section class="join" id="join">
-    <h2>Are You a Photographer?</h2>
-    <p>Join CameraWala and connect with customers.</p>
-    <button onclick="alert('Photographer registration will be added in the next step!')">
-      Join as Photographer
-    </button>
-  </section>
-</main>
+      <button type="submit" id="submitButton">
+        Create Account
+      </button>
+    </form>
+
+    <p id="demoNotice" style="font-size:13px;color:#666">
+      Demo only: account creation is not active yet.
+    </p>
+  </div>
+</div>
 
 <footer>
-  <p>© 2026 CameraWala | All Rights Reserved</p>
+  <p>© 2026 CameraWala</p>
+  <p>Every Moment Matters 📸</p>
 </footer>
 
+<script>
+let currentMode = "customer";
+
+function openForm(mode) {
+  currentMode = mode;
+
+  const title = document.getElementById("formTitle");
+  const description = document.getElementById("formDescription");
+  const nameField = document.getElementById("nameField");
+  const cityField = document.getElementById("cityField");
+  const serviceField = document.getElementById("serviceField");
+  const password = document.getElementById("password");
+  const submitButton = document.getElementById("submitButton");
+
+  document.getElementById("accountForm").reset();
+
+  nameField.style.display = mode === "login" ? "none" : "block";
+  cityField.style.display = mode === "photographer" ? "block" : "none";
+  serviceField.style.display = mode === "photographer" ? "block" : "none";
+
+  document.getElementById("fullName").required = mode !== "login";
+  document.getElementById("city").required = mode === "photographer";
+  document.getElementById("photographyService").required =
+    mode === "photographer";
+
+  password.autocomplete = mode === "login" ? "current-password" : "new-password";
+
+  if (mode === "login") {
+    title.textContent = "Customer Login";
+    description.textContent = "Login will be activated in the next step.";
+    submitButton.textContent = "Login";
+  } else if (mode === "photographer") {
+    title.textContent = "Photographer Registration";
+    description.textContent = "Register your photography services.";
+    submitButton.textContent = "Register as Photographer";
+  } else {
+    title.textContent = "Customer Registration";
+    description.textContent = "Create your CameraWala account.";
+    submitButton.textContent = "Create Account";
+  }
+
+  document.getElementById("accountModal").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("accountModal").style.display = "none";
+}
+
+function demoSubmit(event) {
+  event.preventDefault();
+
+  alert(
+    "This is a demo form. Real account creation will be enabled after secure Firebase setup."
+  );
+}
+
+document.getElementById("accountModal").addEventListener("click", function(event) {
+  if (event.target === this) closeForm();
+});
+</script>
+
 </body>
-</html>
+</html

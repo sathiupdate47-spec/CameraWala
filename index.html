@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CameraWala | Photographer Booking</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f8f9fc;
+  color: #222;
+}
+
+header {
+  background: #111827;
+  color: white;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffb703;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  margin-left: 12px;
+}
+
+.hero {
+  padding: 75px 20px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, #111827, #374151);
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  font-size: 17px;
+  margin-bottom: 25px;
+}
+
+button {
+  background: #ffb703;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 7px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+section {
+  padding: 45px 20px;
+  text-align: center;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: 25px auto 0;
+}
+
+.card {
+  padding: 25px 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #00000012;
+}
+
+.card h3 {
+  margin: 12px 0;
+}
+
+.icon {
+  font-size: 38px;
+}
+
+.join {
+  background: #fff;
+}
+
+.join p {
+  margin: 15px 0 22px;
+}
+
+footer {
+  background: #111827;
+  color: white;
+  text-align: center;
+  padding: 25px 10px;
+}
+
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 29px;
+  }
+
+  header {
+    justify-content: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">📸 CameraWala</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#join">Join Us</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero" id="home">
+    <h1>Find Your Perfect Photographer</h1>
+    <p>Book professional photographers for weddings, birthdays and events.</p>
+    <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+      Explore Services
+    </button>
+  </div>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <p>Make every special moment memorable.</p>
+
+    <div class="services">
+      <div class="card">
+        <div class="icon">💍</div>
+        <h3>Wedding</h3>
+        <p>Capture your special day.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎂</div>
+        <h3>Birthday</h3>
+        <p>Preserve birthday memories.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📷</div>
+        <h3>Photography</h3>
+        <p>Professional photo shoots.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎬</div>
+        <h3>Videography</h3>
+        <p>Videos for every occasion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <h2>Are You a Photographer?</h2>
+    <p>Join CameraWala and connect with customers.</p>
+    <button onclick="alert('Photographer registration will be added in the next step!')">
+      Join as Photographer
+    </button>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 CameraWala | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
